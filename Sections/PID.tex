@@ -14,6 +14,12 @@ Diese Technik beruht darauf, dass ein LZI-Modell verliegt. Zudem müssen alle Po
 
 \subsubsection{Empirische Einstellregeler}
 Ein erster Regler, welcher nicht optimal ist, kann zB mit ZN oder CHR gefunden werden. Dabei wird eine Schrittantwort aufgezeichnet und and Wendepunkt $Q$ eine Tangente angelegt. Damit ergeben sich $T_u$ und $T_g$. Diese können auch zu beurteilung, wie gut ein Regler funktioniert verwendet werden. \script{162}
+~\\
+\noindent\textbf{Wendetangente}
+\begin{center}
+	\includegraphics[width=0.8\columnwidth]{Images/wendetangente}
+\end{center}
+$A$ ist dabei die Schrittantwort höhe
 
 \subsubsection{Optimierung}
 Für verschiedene Parameter werden Experimente durchgeführt, bei denen der relevante Fehler $e$ und Stellsignal $u$ aufgezeichnet werden. Zur Beurteilung wird nun das minimum von $J(k_1, \dots, k_m) ) \int_{0}^{T_{end}}e(t)^2dt$ berechnet.
@@ -35,4 +41,14 @@ Statt auf Störungen in einem Regler zu reagieren, wird versucht diese mit einer
 \end{center}
 
 \subsection{Implementierung von Reglern}
+\subsubsection{Analog}
 \script{175}
+\begin{center}
+	\rotatebox{90}{
+		\bgroup
+		
+		\includegraphics[width=\columnwidth]{Images/analog_implementierung}
+		
+		\egroup
+	}
+\end{center}

@@ -8,7 +8,7 @@ Polgüte $q_p$ entspricht $2\sigma = \frac{\omega_p}{q_p}$. Für identische Pole
 
 \noindent\textbf{Beispiel}
 \[
-H(s) = \frac{1}{s^2 + \underbrace{\frac{s}{4}}_{\frac{\omega_p}{q_p}} + \underbrace{1^2}_{\omega_p^2}}
+H(s) = \frac{1}{s^2 + \underbrace{\frac{s}{4}}_{\frac{\omega_p}{q_p} = 2 \zeta \omega_p^2} + \underbrace{1^2}_{\omega_p^2}}
 \]
 
 \begin{center}
@@ -68,26 +68,26 @@ Mithilfe des Nyquist-Diagramm (Ortskurve) kann die Stabilität eines Systems üb
 \textbf{Durchtrittsfrequenz} $\omega_D$ entspricht $\left|G_0(j\omega_D)\right| = 1$.\\
 \textbf{Phasenschnittfrequenz} $\omega_\pi$ entspricht $\Im(G_0(j\omega_\pi)) = 0$~\\
 
-\todo{Verstärkungsreserve \& Phasenreserve unklar, sie RegT2 ZF S.3}
-\noindent\textbf{Einstellen nach Verstärkungsreserve} $K_{R}$
-\begin{enumerate}[nosep]
-	\item $\omega_\pi$ aus $\arg(G_0(j\omega)) = -\pi$ berechnen
-	\item $K_R \cdot \left|G_0(j\omega_\pi)\right| = \frac{1}{K_{res}}$
-\end{enumerate}~\\
-
-\noindent\textbf{Einstellen nach Phasenreserve}
-\begin{enumerate}[nosep]
-	\item $\arg(G_0(j\omega)) = -\pi + \Phi_{res}$
-	\item $\left|K_R \cdot G_0(j\omega_D)\right| = 1$
-\end{enumerate}
-
-~\\
 \noindent Der Regelkreis ist stabil, wenn einer der Bedingungen zutrifft \script{127}:
 \begin{itemize}[nosep]
 	\item $\omega_\pi > \omega_D$
 	\item $G_0(j\omega_D) = e^{-j\varphi}$ mit $0 < \varphi < \pi$
 	\item $0 > G_0(j\omega_\pi) > -1$
 \end{itemize}
+~\\
+
+\noindent\textbf{Einstellen nach Phasenreserve}
+\begin{enumerate}[nosep]
+	\item $\arg(G_0(j\omega_D)) = -\pi + \Phi_{res}$, Durchtrittsfrequenz $\omega_D$ bestimmen
+	\item $\left|G_0(j\omega_D)\right| = 1$, auflösen nach $K_R$
+\end{enumerate}
+~\\
+\noindent\textbf{Einstellen nach Verstärkungsreserve} $K_{Rres}$
+\begin{enumerate}[nosep]
+	\item $\omega_\pi$ aus $\arg(G_0(j\omega_\pi)) = -\pi$ oder $\Im(G_0(j\omega_\pi)) = 0$ berechnen
+	\item $K_R = \frac{1}{K_{Rres} \cdot \left|G_0(j\omega_\pi)\right|}$,  wobei bei $\left|G(j\omega_\pi)\right| \rightarrow K_R = 1$ gewählt
+\end{enumerate}~\\
+
 
 \subsubsection{DGL Stabilität}\script{140}
 Wenn die stabilität von einem LZI DGL mit Eingang $u$ und Ausgang $y$ untersucht werden soll, kann das charakteritische Polynom verwendet werden. Dabei müssen alle $\lambda$ auf der Linken-Halbenene liegen. \textbf{Tip:} Für einfache System von 1. und 2. Ordnung müssen alle Koeffizienten des chara. Polynom das selbe Vorzeichen haben, um stabil zu sein. $u$ ist dabei irrelevant.
@@ -97,3 +97,19 @@ Wenn die stabilität von einem LZI DGL mit Eingang $u$ und Ausgang $y$ untersuch
 \begin{center}
 	\includegraphics[width=\columnwidth]{Images/bode_stabilität}
 \end{center}
+
+\subsection{Mason's Regel}
+UTF von $x_i$ nach $x_j$ , wobei $x_i$ eine Quelle, $x_j$ jedoch nicht zwingend eine Senke sein muss.
+\[
+H_{ij} = \frac{\sum_{k}P_k\cdot\Delta_k}{\Delta}
+\]
+$P_k \Rightarrow$ Vorwärtspfad $k$ (bezogen auf 1 Eingang)\\
+$\Delta_k \Rightarrow $ 1 - (Summe alle Schleifen die $P_k$ nicht berühren) + (Summe aller Produkte zweier Schleifen, die $P_k$ und sich selbst nicht berührenn) - (Summe aller Produkte dreier Schleifen, die $P_k$ und sich selbst nicht berührenn) + $\dots$\\
+$\Delta \Rightarrow $ 1 - (Summe alle Schleifen) + (Summe aller Produkte zweier Schleifen, die sich nicht berühren) - (Summe aller Produkte dreier Schleifen, die sich nicht berühren) + $\dots$\\
+~\\ \textbf{Beispiel}\\
+\includegraphics[width=\columnwidth]{Images/sfd_beispiel}
+Die UTF zwischen $x_1$ und $x_4$ ist mit Mason's Regel:
+\[
+H_{1,4} = \frac{x_4}{x_1} = \frac{aeh \cdot 1 + abc - abcg}{1 - ef - g}
+\]
+
